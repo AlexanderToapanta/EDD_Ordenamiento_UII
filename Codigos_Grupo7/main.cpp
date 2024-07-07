@@ -97,7 +97,7 @@ int main() {
     do {
         menu();
         opcion = ingresarEntero();
-
+        
         switch (opcion) {
             case 1:
                 system("cls");

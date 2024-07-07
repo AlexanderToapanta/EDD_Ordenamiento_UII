@@ -25,6 +25,7 @@ bool validarLetra(string palabra);
 bool validarCedula(string cedula);
 string ingresarCedula();
 char* ingresar(char* msj);
+char* ingresarSoloNumeros(const char* msj);
 
 string ingresarStringValidado() {
     string palabra;
@@ -57,6 +58,7 @@ string ingresarStringValidado() {
 }
 
 int ingresarEntero() {
+    int opcion;
     string numero;
     bool valido = false;
     while (!valido) {
@@ -212,6 +214,25 @@ char* ingresar(char* msj) {
     printf("%s: ", msj);
     while ((c = getch()) != 13) {
         if (isdigit(c) || c == 8) {  // 8 is the ASCII code for Backspace
+            dato[i++] = c;
+            printf("%c", c);
+        }
+    }
+    dato[i] = '\0';
+    return dato;
+}
+
+char* ingresarSoloNumeros(const char* msj) {
+    char* dato = new char[25];
+    char c;
+    int i = 0;
+    printf("%s : ", msj);
+    while ((c = _getch()) != 13) { // Enter key ends input
+        if (c == 8 && i > 0) { // Detect backspace and remove last character
+            i--;
+            printf("\b \b");
+        }
+        else if (isdigit(c)) { // Only accept numeric characters
             dato[i++] = c;
             printf("%c", c);
         }
